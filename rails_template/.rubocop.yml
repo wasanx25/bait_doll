@@ -1,0 +1,42 @@
+AllCops:
+  Rails:
+    Enabled: true
+  Exclude:
+    - 'db/schema.rb'
+    - 'spec/**'
+    - 'node_modules/**'
+
+Metrics/LineLength:
+  Max: 112
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'app/mailers/application_mailer.rb'
+    - 'app/models/application_record.rb'
+    - 'config/application.rb'
+
+Style/EmptyLines:
+  Exclude:
+    - 'config/environments/development.rb'
+    - 'config/environments/production.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SpaceInsideBrackets:
+  Exclude:
+    - 'config/environments/production.rb'
+
+Style/StringLiterals:
+  Exclude:
+    - 'bin/spring'
+    - 'config/application.rb'
+    - 'config/environments/production.rb'
+    - 'config/puma.rb'
+
+Style/TrailingBlankLines:
+  Exclude:
+    - 'Gemfile'
+

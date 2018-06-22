@@ -1,0 +1,37 @@
+FROM debian:stretch
+ENV LANG C.UTF-8
+
+RUN apt-get update -y && apt-get dist-upgrade -y
+RUN apt-get install -y \
+      sudo build-essential wget curl \
+      libssl-dev \
+      default-libmysqlclient-dev \
+      mysql-client \
+      libcurl4-openssl-dev \
+      libssl-dev \
+      libyaml-dev \
+      zlib1g-dev
+
+# Set environment
+ARG app_name
+ENV deploy  /var/www/$app_name
+ENV RUBY_VERSION 2.4.1
+ENV RUBY_FILE    ruby-$RUBY_VERSION
+
+# Build Ruby
+RUN wget http://ftp.ruby-lang.org/pub/ruby/2.4/$RUBY_FILE.tar.gz; \
+    tar -zxvf $RUBY_FILE.tar.gz; \
+    cd $RUBY_FILE; \
+    ./configure && make && make install; \
+    cd .. ; \
+    rm -rf $RUBY_FILE $RUBY_FILE.tar.gz;
+
+# Working Directory
+RUN mkdir -p $deploy
+WORKDIR $deploy
+
+# Ruby on Rails 5
+RUN gem install bundler -v 1.15.4
+ADD Gemfile $deploy/
+ADD Gemfile.lock $deploy/
+RUN bundle install

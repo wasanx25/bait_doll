@@ -1,0 +1,1 @@
+slackに住まわせるhubotを匿名BOTにするやつ
