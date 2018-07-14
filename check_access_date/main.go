@@ -7,9 +7,15 @@ import (
 	"path/filepath"
 	"syscall"
 	"time"
+
+	flag "github.com/spf13/pflag"
 )
 
 func main() {
+	year := flag.IntP("year", "y", 2018, "")
+	month := flag.IntP("month", "m", 7, "")
+	flag.Parse()
+
 	files := getFiles(".")
 	for _, file := range files {
 		var s syscall.Stat_t
@@ -19,7 +25,8 @@ func main() {
 		if err != nil {
 			loc = time.FixedZone("Asia/Tokyo", 9*60*60)
 		}
-		at := time.Date(2018, 7, 13, 18, 7, 0, 0, loc)
+
+		at := time.Date(*year, time.Month(*month), 1, 0, 0, 0, 0, loc)
 		if at.Before(time.Unix(sec, 0)) {
 			fmt.Println(fmt.Sprint(file, " : ", time.Unix(sec, 0)))
 		}
