@@ -17,7 +17,7 @@ gem_group :development, :test do
   gem 'factory_girl_rails', require: false
 end
 
-file '.rubocop.yml', '.rubocop.yml'
+file '.rubocop.yml', erb('.rubocop.yml')
 
 run 'bundle install'
 generate 'rspec:install'
