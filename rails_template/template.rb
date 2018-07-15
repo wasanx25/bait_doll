@@ -22,7 +22,7 @@ file '.rubocop.yml', '.rubocop.yml'
 run 'bundle install'
 generate 'rspec:install'
 
-file 'Dockerfile', erb('Dockerfile_alpine')
+file 'Dockerfile', erb('Dockerfile')
 create_file 'docker-compose.yml', <<YAML
 version: '2'
 services:
