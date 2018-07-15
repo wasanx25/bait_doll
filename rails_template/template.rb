@@ -37,3 +37,11 @@ services:
     volumes:
       - '.:/var/www/#{app_name}'
 YAML
+
+file 'Dockerfile.production', erb('Dockerfile.production')
+create_file 'Makefile', <<YAML
+app := #{app_name}
+
+build:
+	docker build -t $(app):production --build-arg app_name=#{app_name} -f Dockerfile.production .
+YAML
