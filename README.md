@@ -1,5 +1,4 @@
 # bait_doll
 
-bait_doll is 「おとり人形」. It is YUGIOH-KARD.
+bait_doll has very useful my tools.
 
-This repository is my tool box.
